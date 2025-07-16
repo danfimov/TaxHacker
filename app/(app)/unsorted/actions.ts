@@ -70,7 +70,7 @@ export async function analyzeFileAction(
 
   const schema = fieldsToJsonSchema(fields)
 
-  const results = await analyzeTransaction(prompt, schema, attachments, apiKey, file.id, user.id)
+  const results = await analyzeTransaction(prompt, schema, attachments, file.id, user.id)
 
   console.log("Analysis results:", results)
 
@@ -98,7 +98,7 @@ export async function saveFileAsTransactionAction(
     const file = await getFileById(fileId, user.id)
     if (!file) throw new Error("File not found")
 
-    // Create transaction 
+    // Create transaction
     const transaction = await createTransaction(user.id, validatedForm.data)
 
     // Move file to processed location
